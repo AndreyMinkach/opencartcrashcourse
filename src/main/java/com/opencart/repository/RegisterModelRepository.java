@@ -14,7 +14,7 @@ public class RegisterModelRepository {
         return RegisterModel.getBuilder()
                 .firstName(RandomStringUtils.randomAlphabetic(5))
                 .lastName(RandomStringUtils.randomAlphabetic(5))
-                .email(RandomEmailUtil.email)
+                .email(RandomEmailUtil.generateRandomEmail())
                 .telephone(RandomStringUtils.randomNumeric(10))
                 .password(password)
                 .passwordConfirm(password)

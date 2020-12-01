@@ -1,10 +1,6 @@
 import com.opencart.helpers.DBHelper;
-import com.opencart.helpers.UserHelper;
 import com.opencart.navigation.Navigation;
-import com.opencart.steps.AdminPageBL;
-import com.opencart.steps.ForgottenPageBL;
-import com.opencart.steps.MainPageBL;
-import com.opencart.steps.RegisterPageBL;
+import com.opencart.steps.*;
 import com.opencart.util.RandomEmailUtil;
 import org.testng.annotations.*;
 
@@ -15,38 +11,32 @@ public class ChangePasswordTest extends BaseTest {
 
     private String randomEmail;
 
-    @Test(priority = 1)
-    public void registerUserWithValidParameters() {
+    @BeforeMethod
+    public void registerUserWithRandomEmail() {
         new Navigation().navigateToUrl(BASE_URL.getValue());
-        MainPageBL mainPageBL = new MainPageBL();
-        RegisterPageBL registerPageBL = mainPageBL.getHeaderPageBL()
-                .clickOnMyAccountButton()
-                .clickOnRegisterButton()
-                .registerNewPerson();
+        new MainPageBL().registerNewUser();
         randomEmail = RandomEmailUtil.email;
-        registerPageBL.verifyUserRegistration();
     }
 
-    @Test(priority = 2)
+    @Test
     public void unlockUserWithDB() {
         new Navigation().navigateToUrl(BASE_URL.getValue());
-        UserHelper.lockUser(randomEmail);
-        UserHelper.changePassword(randomEmail);
+        new LoginPageBL().lockUser(randomEmail)
+                .changePassword(randomEmail);
         DBHelper.unlockUser(randomEmail);
-        MainPageBL mainPageBL = new MainPageBL();
-        mainPageBL.getHeaderPageBL()
+        new MainPageBL().getHeaderPageBL()
                 .clickOnMyAccountButton()
                 .clickOnLoginButton()
                 .loginUser(randomEmail, ForgottenPageBL.newPassword)
                 .verifyUserLogin();
     }
 
-    @Test(priority = 3)
+    @Test
     public void unlockUserWithAdminPanel() {
         Navigation navigation = new Navigation();
         navigation.navigateToUrl(BASE_URL.getValue());
-        UserHelper.lockUser(randomEmail);
-        UserHelper.changePassword(randomEmail);
+        new LoginPageBL().lockUser(randomEmail)
+                .changePassword(randomEmail);
         navigation.openNewTab(ADMIN_PAGE_URL.getValue());
         new AdminPageBL().loginAdmin()
                 .unlockUser(randomEmail)
@@ -58,10 +48,6 @@ public class ChangePasswordTest extends BaseTest {
 
     @AfterMethod
     public void logout() {
-        new MainPageBL().getHeaderPageBL()
-                .clickOnMyAccountButton()
-                .clickOnLogoutButton()
-                .clickContinue()
-                .verifyLogout();
+        new MainPageBL().logout();
     }
 }

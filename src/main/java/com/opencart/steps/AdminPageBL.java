@@ -1,6 +1,7 @@
 package com.opencart.steps;
 
 import com.opencart.enums.AdminNavigationMenuButtons;
+import com.opencart.helpers.PropertiesHelper;
 import com.opencart.navigation.Navigation;
 import com.opencart.pages.AdminPage;
 import org.testng.Assert;
@@ -14,8 +15,8 @@ public class AdminPageBL {
 
 
     public AdminPageBL loginAdmin() {
-        inputAdminUsername("admin");
-        inputAdminPassword("qwert_123");
+        inputAdminUsername(PropertiesHelper.getValue("admin.login"));
+        inputAdminPassword(PropertiesHelper.getValue("admin.password"));
         clickOnLoginButton();
         return new AdminPageBL();
     }

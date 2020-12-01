@@ -6,12 +6,10 @@ import com.opencart.navigation.Navigation;
 import com.opencart.pages.ForgottenPasswordPage;
 import com.opencart.pages.SuccessResetPasswordPage;
 import com.opencart.repository.LoginModelRepository;
-import com.opencart.repository.RegisterModelRepository;
 import com.opencart.util.RandomEmailUtil;
-import lombok.extern.java.Log;
 import org.testng.Assert;
 
-public class ForgottenPageBL {
+public class  ForgottenPageBL {
 
     public static String newPassword;
     private ForgottenPasswordPage forgottenPasswordPage;

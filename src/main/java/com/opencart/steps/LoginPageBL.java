@@ -39,7 +39,24 @@ public class LoginPageBL {
         return new LoginPageBL();
     }
 
+    public void verifyInvalidDataWarning() {
+        String expectedMessage = "Warning: No match for E-Mail Address and/or Password.";
+        Assert.assertEquals(successLoginPage.getMyAccountTitle().getText(), expectedMessage, "Incorrect page title");
+    }
+
+    public void changePassword(String email) {
+        new MainPageBL().getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLoginButton()
+                .clickOnForgottenPassword()
+                .changePasswordWithURL(email)
+                .verifyChangePassword();
+    }
+
     public LoginPageBL lockUser(String email) {
+        new MainPageBL().getHeaderPageBL()
+                .clickOnMyAccountButton()
+                .clickOnLoginButton();
         do {
             loginUser(email, "wrong_password");
         } while (!lockMessage());

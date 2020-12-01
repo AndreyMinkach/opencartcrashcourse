@@ -21,7 +21,7 @@ public class RegisterPageBL {
         RegisterModel registerModel = RegisterModelRepository.getRegisterModel();
         inputFirstName(registerModel.getFirstName());
         inputLastName(registerModel.getLastName());
-        inputEmail(RandomEmailUtil.getRandomEmail());
+        inputEmail(registerModel.getEmail());
         inputTelephone(registerModel.getTelephone());
         inputPassword(registerModel.getPassword());
         chooseSubscribe(1);
