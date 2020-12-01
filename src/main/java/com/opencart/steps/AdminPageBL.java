@@ -34,27 +34,22 @@ public class AdminPageBL {
     }
 
     private void inputUsernameToUnlock(String customerEmail) {
-        adminPage.waitUntilFindElement(adminPage.getCustomerEmailInput());
         adminPage.customerEmailInput.clear();
         adminPage.customerEmailInput.sendKeys(customerEmail);
     }
 
     public void inputAdminUsername(String username) {
-        adminPage.waitUntilFindElement(adminPage.getAdminNameInput());
         adminPage.adminNameInput.clear();
         adminPage.adminNameInput.sendKeys(username);
     }
 
     public void inputAdminPassword(String password) {
-        adminPage.waitUntilFindElement(adminPage.getAdminPasswordInput());
         adminPage.adminPasswordInput.clear();
         adminPage.adminPasswordInput.sendKeys(password);
     }
 
     public void clickOnMenuButton(AdminNavigationMenuButtons button, String submenuName) {
-        adminPage.waitUntilFindElement(adminPage.clickOnMenuButton(button));
         adminPage.clickOnMenuButton(button).click();
-        adminPage.waitUntilFindElement(adminPage.clickOnSubmenuButton(button, submenuName));
         adminPage.clickOnSubmenuButton(button, submenuName).click();
     }
 
@@ -75,7 +70,6 @@ public class AdminPageBL {
     }
 
     public void verifyUnlockAccount() {
-        adminPage.waitUntilFindElement(adminPage.getSuccessAlert());
         String expectedMessage = "Success: You have modified customers!";
         Assert.assertTrue(adminPage.successAlert.getText().contains(expectedMessage), "Customer has not modified");
     }

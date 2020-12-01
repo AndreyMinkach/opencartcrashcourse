@@ -39,7 +39,6 @@ public class  ForgottenPageBL {
     }
 
     private void inputNewPassword(String password) {
-        forgottenPasswordPage.waitUntilFindElement(forgottenPasswordPage.getNewPasswordInput());
         forgottenPasswordPage.getNewPasswordInput().clear();
         forgottenPasswordPage.getNewPasswordInput().sendKeys(password);
         forgottenPasswordPage.getNewPasswordConfirmInput().clear();
@@ -47,18 +46,15 @@ public class  ForgottenPageBL {
     }
 
     private void inputEmail(String email) {
-        forgottenPasswordPage.waitUntilFindElement(forgottenPasswordPage.getForgottenEmailInput());
         forgottenPasswordPage.getForgottenEmailInput().clear();
         forgottenPasswordPage.getForgottenEmailInput().sendKeys(email);
     }
 
     private void clickOnContinueButton() {
-        forgottenPasswordPage.waitUntilFindElement(forgottenPasswordPage.getContinueButton());
         forgottenPasswordPage.getContinueButton().click();
     }
 
     public void verifyChangePassword() {
-        forgottenPasswordPage.waitUntilFindElement(successResetPasswordPage.getSuccessAlert());
         String expectedMessage = "Success: Your password has been successfully updated.";
         Assert.assertEquals(successResetPasswordPage.getSuccessAlert().getText(), expectedMessage, "Incorrect page title");
     }

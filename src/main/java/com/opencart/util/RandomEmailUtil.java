@@ -24,7 +24,7 @@ public class RandomEmailUtil {
         return "";
     }
 
-    public static String getRandomEmail() {
+    public static String generateRandomEmail() {
         try {
             HttpResponse<String> response = getJsonByURL(URLs.TEMP_MAILS_URL.getValue() + "genRandomMailbox&count=1");
             email = response.body().substring(2, response.body().length() - 2);

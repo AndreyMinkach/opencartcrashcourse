@@ -12,25 +12,21 @@ public class HeaderPageBL {
     }
 
     public HeaderPageBL clickOnMyAccountButton() {
-        headerPage.waitUntilFindElement(headerPage.getMyAccountButton());
         headerPage.getMyAccountButton().click();
         return this;
     }
 
     public LoginPageBL clickOnLoginButton() {
-        headerPage.waitUntilFindElement(headerPage.getLoginButton());
         headerPage.getLoginButton().click();
         return new LoginPageBL();
     }
 
     public LogoutPageBL clickOnLogoutButton() {
-        headerPage.waitUntilFindElement(headerPage.getLogoutButton());
         headerPage.getLogoutButton().click();
         return new LogoutPageBL();
     }
 
     public RegisterPageBL clickOnRegisterButton() {
-        headerPage.waitUntilFindElement(headerPage.getRegisterButton());
         headerPage.getRegisterButton().click();
         return new RegisterPageBL();
     }
